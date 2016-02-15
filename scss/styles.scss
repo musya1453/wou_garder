@@ -1,16 +1,25 @@
 @import "compass";
-
 //base styles
 @import "common/mixins";
 @import "common/fonts";
 @import "common/settings";
 @import "common/normalize";
 @import "common/defaults";
-
 //forms
 @import "forms/forms";
-
 //layout
-@import "layout/content";
+@import "layout/sldier";
 
 //blocks
+
+@media (max-width: 767px) {
+  @import "layout/content-s";
+}
+
+@media (min-width: 768px) and (max-width: 1039px) {
+  @import "layout/content-m";
+}
+
+@media (min-width: 1040px) {
+  @import "layout/content";
+}

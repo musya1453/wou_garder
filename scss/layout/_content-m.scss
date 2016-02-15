@@ -1,5 +1,5 @@
 .site-container {
-  width: 1024px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -7,27 +7,29 @@
   @include box-sizing(border-box);
 }
 
+body {
+  padding: 0 10px;
+  font-size: 14px;
+}
+
 .header-wrapper {
   padding: 85px 0 0;
   position: relative;
 
   &:after {
-    @include pseudo-block($top: 0, $right: 10%);
+    @include pseudo-block($top: 0, $right: 0%);
     background: image-url('bg/header-img-2.png');
-    width: 843px;
-    height: 454px;
+    width: 675px;
+    height: 363px;
     z-index: -1;
+    @include background-size(cover);
   }
 
   .site-container {
     position: relative;
 
     &:before {
-      @include pseudo-block($top: 0, $left: -40%);
-      background: image-url('bg/header-img-1.png');
-      width: 516px;
-      height: 583px;
-      z-index: -1;
+      display: none;
     }
   }
 
@@ -70,7 +72,7 @@
         a {
           color: #333;
           text-transform: uppercase;
-          font-size: 16px;
+          font-size: 14px;
           text-decoration: none;
           padding: 8px 0;
           @include transition(all .3s);
@@ -100,11 +102,6 @@ form {
     color: #fff;
     font-size: 16px;
     border: none;
-    @include transition(all .3s);
-
-    &:hover {
-      opacity: .7;
-    }
   }
 
   &.form-search {
@@ -127,17 +124,26 @@ form {
 
 .content-wrapper {
 
+  img {
+    max-width: 100%;
+  }
+
   .site-container {
     background: #fff;
     border: 1px solid #dadada;
-    padding: 25px 45px 62px;
+    padding: 15px 25px 40px;
     @include clearfix();
   }
 
   .content {
     float: left;
     width: 69%;
-    padding-right: 35px;
+    padding-right: 20px;
+    border-right: 1px solid #e5e5e5;
+
+    #check {
+      opacity: 0;
+    }
 
     .single-post {
       margin-bottom: 0 !important;
@@ -172,7 +178,7 @@ form {
       }
 
       .more-posts {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
 
         ul {
           margin: 0;
@@ -186,12 +192,14 @@ form {
       }
 
       .b-sub-share {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
+        text-align: center;
 
         .subscribe {
           display: inline-block;
           position: relative;
           vertical-align: middle;
+          margin-bottom: 20px;
 
           .text {
             position: absolute;
@@ -242,13 +250,9 @@ form {
           margin-bottom: 15px;
         }
 
-        #check {
-          opacity: 0;
-        }
-
         .form-text {
-          width: 190px;
-          margin: 0 15px 0 0;
+          width: 146px;
+          margin: 0 5px 0 0;
 
           &:last-child {
             margin-right: 0;
@@ -258,16 +262,11 @@ form {
         .form-type-textarea {
           position: relative;
 
-          .btn-smile {
+          .btn-smile{
             position: absolute;
-            bottom: 23px;
+            bottom:23px;
             left: 10px;
-            @include oneline-sprite-box($icons, smile-btn);
-            @include transition(all .3s);
-
-            &:hover {
-              @include transform(scale(1.1));
-            }
+            @include oneline-sprite-box($icons, smile-btn)
           }
         }
 
@@ -289,7 +288,8 @@ form {
         }
 
         .btn-wrap {
-          float: right;
+          text-align: center;
+          padding: 35px 0;
 
           .form-submit {
             width: 190px;
@@ -323,7 +323,7 @@ form {
           .text {
             display: inline-block;
             vertical-align: top;
-            width: 85%;
+            width: 75%;
             padding-left: 11px;
             line-height: 1.4;
 
@@ -374,10 +374,6 @@ form {
           @include transform(translateY(-50%));
         }
       }
-    }
-
-    .img-mobile {
-      display: none;
     }
 
     .post {
@@ -442,13 +438,18 @@ form {
         }
       }
     }
+
+
+    .img-mobile {
+      display: none;
+    }
   }
 
   .sidebar {
     float: right;
     width: 31%;
-    padding-left: 43px;
-    border-left: 1px solid #e5e5e5;
+    padding-left: 20px;
+
 
     .subscribe {
       margin-bottom: 25px;
@@ -469,7 +470,6 @@ form {
         right: 0;
         bottom: 0;
         padding: 20px 25px;
-        font-size: 16px;
         color: #fff;
 
         p {
@@ -482,7 +482,7 @@ form {
         }
 
         span {
-          font-size: 24px;
+          font-size: 20px;
           margin-bottom: 15px;
         }
       }
@@ -552,7 +552,7 @@ form {
 
     .public-list {
       border: 1px solid #e5e5e5;
-      padding: 35px 20px 25px;
+      padding: 25px 15px 25px;
       margin-bottom: 25px;
 
       span {
@@ -587,10 +587,6 @@ form {
 
           a {
             text-decoration: none;
-
-            &:hover {
-              text-decoration: underline;
-            }
           }
         }
       }
@@ -650,7 +646,7 @@ form {
 
     .best-post {
       border: 1px solid #e5e5e5;
-      padding: 35px 20px;
+      padding: 20px 15px;
       margin-bottom: 25px;
 
       & > span {
@@ -663,6 +659,7 @@ form {
 
       .post-s {
         margin-bottom: 22px;
+        text-align: center;
 
         &:last-child {
           margin-bottom: 0;
@@ -690,9 +687,9 @@ form {
 
     .opros {
       border: 1px solid #e5e5e5;
-      padding: 35px 20px;
+      padding: 20px 15px;
       text-align: center;
-      font-size: 16px;
+      font-size: 15px;
 
       span {
         font-size: 24px;
@@ -736,7 +733,7 @@ form {
 }
 
 .footer-wrapper {
-  padding-bottom: 480px;
+  padding-bottom: 380px;
   background-image: image-url('bg/bg-bottom.png');
   background-repeat: no-repeat;
   background-position: bottom;
@@ -807,7 +804,7 @@ form {
   }
 
   .footer {
-    padding: 30px 45px;
+    padding: 30px 15px;
     background: #fff;
     border: 1px solid #dadada;
     border-top: none;
@@ -862,7 +859,7 @@ form {
 
   .statistics {
     position: absolute;
-    bottom: 80px;
+    bottom: 100px;
     right: 0;
   }
 }

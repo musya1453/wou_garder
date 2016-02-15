@@ -5,7 +5,11 @@ html {
 body {
   min-height: 100%;
   height: 100%;
-  font-size: 14px;
+  font-size: 15px;
+  background-image: image-url('bg/body-bg.png');
+  font-family: $light;
+  color: #333333;
+  line-height: 1.2;
 }
 
 .clearfix {
@@ -29,4 +33,24 @@ body {
 
 .pull-right {
   float: right;
+}
+
+strong{
+  font-family: $medium;
+}
+
+a {
+  color: #e297a3;
+  outline: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+h4 {
+  font-size: 20px;
+  font-family: $regular;
+  text-transform: uppercase;
+  margin: 0 0 15px;
 }

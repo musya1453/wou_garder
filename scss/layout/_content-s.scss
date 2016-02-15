@@ -1,5 +1,5 @@
 .site-container {
-  width: 1024px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -7,41 +7,87 @@
   @include box-sizing(border-box);
 }
 
+body {
+  font-size: 15px;
+}
+
 .header-wrapper {
-  padding: 85px 0 0;
   position: relative;
+  overflow-x: hidden;
+
+  .header-top {
+    padding: 15px 0 0;
+  }
 
   &:after {
-    @include pseudo-block($top: 0, $right: 10%);
-    background: image-url('bg/header-img-2.png');
-    width: 843px;
-    height: 454px;
+    @include pseudo-block($top: 205px, $left: 50%);
+    background: image-url('bg/header-img-2-1.png');
+    width: 435px;
+    height: 276px;
     z-index: -1;
+    @include background-size(cover);
+    @include transform(translateX(-50%));
+  }
+
+  .btn-menu {
+    width: 44px;
+    height: 44px;
+    background: #e297a3;
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    &:before {
+      @include pseudo-block($top: 13px, $left: 13px);
+      height: 3px;
+      width: 20px;
+      background: #fff;
+    }
+
+    &:after {
+      @include pseudo-block($bottom: 13px, $left: 13px);
+      height: 3px;
+      width: 20px;
+      background: #fff;
+    }
+
+    span {
+      width: 20px;
+      height: 3px;
+      background: #fff;
+      position: absolute;
+      top: 50%;
+      left: 13px;
+      @include transform(translateY(-50%));
+    }
   }
 
   .site-container {
     position: relative;
 
     &:before {
-      @include pseudo-block($top: 0, $left: -40%);
-      background: image-url('bg/header-img-1.png');
-      width: 516px;
-      height: 583px;
-      z-index: -1;
+      display: none;
     }
   }
 
   .logo {
     margin-bottom: 35px;
     display: block;
+    width: 165px;
+
+    img {
+      width: 100%;
+    }
   }
 
   h1 {
-    margin: 0 0 85px;
-    width: 450px;
+    margin: 0 0 300px;
+    width: 100%;
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 18px;
     font-family: $regular;
+    text-align: center;
 
     span {
       color: #e297a3;
@@ -50,21 +96,25 @@
 
   .nav {
     margin-bottom: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
 
     ul {
       margin: 0;
-      padding: 0;
+      padding: 50px 0;
       display: table;
       width: 100%;
       border: 1px solid #dadada;
       background: #fff;
 
       li {
-        display: table-cell;
         text-align: center;
 
         &.active a {
-          @include box-shadow(inset 0px -4px 0 0px #e297a3);
+          border: 2px solid #e297a3;
         }
 
         a {
@@ -72,12 +122,12 @@
           text-transform: uppercase;
           font-size: 16px;
           text-decoration: none;
-          padding: 8px 0;
+          padding: 8px 15px;
           @include transition(all .3s);
           display: inline-block;
 
           &:hover {
-            @include box-shadow(inset 0px -4px 0 0px #e297a3);
+            border: 2px solid #e297a3;
           }
         }
       }
@@ -100,11 +150,6 @@ form {
     color: #fff;
     font-size: 16px;
     border: none;
-    @include transition(all .3s);
-
-    &:hover {
-      opacity: .7;
-    }
   }
 
   &.form-search {
@@ -127,24 +172,29 @@ form {
 
 .content-wrapper {
 
+  img {
+    max-width: 100%;
+  }
+
   .site-container {
     background: #fff;
     border: 1px solid #dadada;
-    padding: 25px 45px 62px;
+    padding: 15px 15px 40px;
     @include clearfix();
   }
 
   .content {
-    float: left;
-    width: 69%;
-    padding-right: 35px;
+
+    #check {
+      opacity: 0;
+    }
+
+    .advertising {
+      margin-bottom: 30px;
+    }
 
     .single-post {
       margin-bottom: 0 !important;
-
-      .advertising {
-        margin-bottom: 40px;
-      }
 
       .form-submit {
         padding: 4px;
@@ -172,7 +222,7 @@ form {
       }
 
       .more-posts {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
 
         ul {
           margin: 0;
@@ -186,34 +236,43 @@ form {
       }
 
       .b-sub-share {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
+        text-align: center;
+
+        .img img {
+          display: none;
+
+          &.img-mobile {
+            display: block;
+          }
+        }
 
         .subscribe {
           display: inline-block;
           position: relative;
           vertical-align: middle;
+          margin-bottom: 20px;
+          width: 245px;
 
           .text {
             position: absolute;
             top: 0;
             left: 0;
-            width: 160px;
-            padding: 20px 0 20px 20px;
+            right: 0;
+            padding: 20px;
             color: #fff;
             font-size: 17px;
             font-family: $regular;
           }
 
           form {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 210px;
-            padding: 36px 20px 32px 0;
+            padding: 20px;
+            background: #1d1d1b;
 
             .form-text {
               margin-bottom: 12px;
             }
+
             input {
               width: 100%;
             }
@@ -242,13 +301,10 @@ form {
           margin-bottom: 15px;
         }
 
-        #check {
-          opacity: 0;
-        }
-
         .form-text {
           width: 190px;
-          margin: 0 15px 0 0;
+          margin: 0 5px 11px 0;
+          display: block;
 
           &:last-child {
             margin-right: 0;
@@ -258,16 +314,11 @@ form {
         .form-type-textarea {
           position: relative;
 
-          .btn-smile {
+          .btn-smile{
             position: absolute;
-            bottom: 23px;
+            bottom:23px;
             left: 10px;
-            @include oneline-sprite-box($icons, smile-btn);
-            @include transition(all .3s);
-
-            &:hover {
-              @include transform(scale(1.1));
-            }
+            @include oneline-sprite-box($icons, smile-btn)
           }
         }
 
@@ -286,10 +337,12 @@ form {
 
         .form-type-checkbox {
           float: left;
+          margin-bottom: 20px;
         }
 
         .btn-wrap {
-          float: right;
+          text-align: center;
+          padding: 35px 0;
 
           .form-submit {
             width: 190px;
@@ -306,7 +359,6 @@ form {
           list-style: none;
 
           &.children {
-            padding-left: 50px;
             border-top: 1px solid #e5e5e5;
             padding-top: 7px;
             margin-top: 10px;
@@ -323,7 +375,7 @@ form {
           .text {
             display: inline-block;
             vertical-align: top;
-            width: 85%;
+            width: 68%;
             padding-left: 11px;
             line-height: 1.4;
 
@@ -376,10 +428,6 @@ form {
       }
     }
 
-    .img-mobile {
-      display: none;
-    }
-
     .post {
       padding: 10px 0;
       @include clearfix();
@@ -394,6 +442,7 @@ form {
         display: inline-block;
         text-transform: uppercase;
         margin: 0 0 25px;
+        font-size: 16px;
 
         a {
           color: #333;
@@ -411,7 +460,8 @@ form {
       }
 
       .read-more {
-        float: right;
+        display: block;
+        margin-bottom: 12px;
       }
     }
 
@@ -445,10 +495,6 @@ form {
   }
 
   .sidebar {
-    float: right;
-    width: 31%;
-    padding-left: 43px;
-    border-left: 1px solid #e5e5e5;
 
     .subscribe {
       margin-bottom: 25px;
@@ -459,6 +505,7 @@ form {
 
       img {
         display: block;
+        width: 100%;
       }
 
       .text {
@@ -469,7 +516,6 @@ form {
         right: 0;
         bottom: 0;
         padding: 20px 25px;
-        font-size: 16px;
         color: #fff;
 
         p {
@@ -482,7 +528,7 @@ form {
         }
 
         span {
-          font-size: 24px;
+          font-size: 20px;
           margin-bottom: 15px;
         }
       }
@@ -504,7 +550,9 @@ form {
 
     .info {
       position: relative;
-      margin-bottom: 25px;
+      text-align: center;
+      max-width: 245px;
+      margin: 0 auto 20px;
 
       &.style-a {
 
@@ -552,7 +600,7 @@ form {
 
     .public-list {
       border: 1px solid #e5e5e5;
-      padding: 35px 20px 25px;
+      padding: 25px 15px 25px;
       margin-bottom: 25px;
 
       span {
@@ -587,10 +635,6 @@ form {
 
           a {
             text-decoration: none;
-
-            &:hover {
-              text-decoration: underline;
-            }
           }
         }
       }
@@ -650,7 +694,7 @@ form {
 
     .best-post {
       border: 1px solid #e5e5e5;
-      padding: 35px 20px;
+      padding: 20px 15px;
       margin-bottom: 25px;
 
       & > span {
@@ -663,6 +707,7 @@ form {
 
       .post-s {
         margin-bottom: 22px;
+        text-align: center;
 
         &:last-child {
           margin-bottom: 0;
@@ -690,9 +735,9 @@ form {
 
     .opros {
       border: 1px solid #e5e5e5;
-      padding: 35px 20px;
+      padding: 20px 15px;
       text-align: center;
-      font-size: 16px;
+      font-size: 15px;
 
       span {
         font-size: 24px;
@@ -736,61 +781,47 @@ form {
 }
 
 .footer-wrapper {
-  padding-bottom: 480px;
+  padding-bottom: 280px;
   background-image: image-url('bg/bg-bottom.png');
   background-repeat: no-repeat;
   background-position: bottom;
   position: relative;
-
-  &:after {
-    @include pseudo-block($bottom: 65%, $right: 0);
-    background-image: image-url('bg/foot-img-2.png');
-    width: 494px;
-    height: 589px;
-    z-index: -1;
-  }
+  background-size: 900px;
 
   .pull-left, .pull-right {
-    width: 50%;
-  }
-
-  .pull-right {
-    padding-left: 20px;
+    float: none;
     position: relative;
+
   }
 
   form {
-    padding: 25px;
-    background: image-url('bg/message.png');
-    height: 245px;
+    padding: 15px;
+    background: image-url('bg/message.png') no-repeat center;
+    @include clearfix();
 
     span {
-      font-size: 16px;
+      font-size: 14px;
       font-family: $regular;
       text-align: center;
       display: block;
-      margin-bottom: 20px;
-    }
-
-    .pull-left {
-      padding-right: 10px;
-    }
-
-    .pull-right {
-      padding-left: 10px;
+      margin-bottom: 9px;
     }
 
     .form-text {
-      margin-bottom: 10px;
+      max-width: 215px;
+      display: block;
+      margin: 0 auto 7px;
     }
 
     textarea {
       border: 1px solid #dadada;
       width: 100%;
-      max-width: 100%;
-      height: 70px;
-      max-height: 70px;
+      height: 50px;
+      max-height: 50px;
       padding: 10px;
+      display: block;
+      max-width: 215px;
+      margin: 0 auto;
     }
 
     .btn-wrap {
@@ -807,45 +838,22 @@ form {
   }
 
   .footer {
-    padding: 30px 45px;
+    padding: 30px 0;
     background: #fff;
     border: 1px solid #dadada;
     border-top: none;
     @include clearfix();
     position: relative;
-
-    &:before {
-      @include pseudo-block($top: -100%, $left: -30%);
-      background-image: image-url('bg/foot-img-1.png');
-      width: 466px;
-      height: 554px;
-      z-index: -1;
-    }
-
   }
 
   .navigation {
-    margin: 0 0 35px;
-    padding: 0;
-
-    li {
-      display: inline-block;
-      width: 103px;
-      margin-bottom: 10px;
-
-      a {
-        display: inline-block;
-        color: #333;
-        font-size: 14px;
-      }
-    }
+    display: none;
   }
 
   .desc {
     width: 285px;
     font-size: 13px;
-    border-left: 1px solid #9b9b9b;
-    padding-left: 20px;
+    padding: 20px 10px;
 
     strong {
       display: block;
@@ -862,7 +870,7 @@ form {
 
   .statistics {
     position: absolute;
-    bottom: 80px;
-    right: 0;
+    bottom: 0px;
+    right: 10px;
   }
 }

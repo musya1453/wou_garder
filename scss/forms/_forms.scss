@@ -1,3 +1,18 @@
-.form {
 
+label {
+  position: relative;
+}
+
+.checkbox:not(checked) + label {
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.checkbox:not(checked) + label:before {
+  @include pseudo-block($top: 0, $left: -16px);
+  @include oneline-sprite-box($icons, check);
+}
+
+.checkbox:checked + label:before {
+  @include oneline-sprite-box($icons, check-active);
 }
