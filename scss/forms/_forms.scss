@@ -16,3 +16,34 @@ label {
 .checkbox:checked + label:before {
   @include oneline-sprite-box($icons, check-active);
 }
+
+.radio input:not(checked) + label {
+  cursor: pointer;
+  position: relative;
+}
+
+.radio input:not(checked) + label:before {
+  @include pseudo-block($top: 50%, $left: -24px);
+  @include border-radius(50%);
+  border: 1px solid #d4d4d4;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  @include transform(translateY(-50%));
+}
+
+.radio input:checked + label:after {
+  @include pseudo-block($top: 50%, $left: -21px);
+  @include border-radius(50%);
+  border: 1px solid #d4d4d4;
+  width: 8px;
+  height: 8px;
+  background: #d4d4d4;
+  @include transform(translateY(-50%));
+}
+
+.radio {
+  input {
+    opacity: 0;
+  }
+}

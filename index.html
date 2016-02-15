@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Name</title>
+  <title>Главная | ВАУ гардероб</title>
   <meta charset="utf-8"/>
   <meta name="HandheldFriendly" content="false"/>
   <meta name="viewport" content="user-scalable=yes, width=device-width"/>
@@ -48,6 +48,10 @@
 <div class="content-wrapper">
 <div class="site-container">
 <div class="content">
+  <form class="form-search">
+    <input type="text" class="form-text" placeholder="Поиск">
+    <input type="submit" class="form-submit">
+  </form>
   <div class="post">
     <span class="date">22.12.2015</span>
 
@@ -257,13 +261,13 @@
     <form class="form-opros">
 
       <div class="radio">
-        <input id="yes" type="radio">
+        <input id="yes" type="radio" name="opros">
         <label for="yes">Да</label>
       </div>
 
       <div class="radio">
 
-        <input id="no" type="radio">
+        <input id="no" type="radio" name="opros">
         <label for="no">Нет</label>
       </div>
     </form>

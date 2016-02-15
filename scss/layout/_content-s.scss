@@ -13,7 +13,7 @@ body {
 
 .header-wrapper {
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 
   .header-top {
     padding: 15px 0 0;
@@ -37,12 +37,15 @@ body {
     position: absolute;
     top: 15px;
     right: 15px;
+    @include transition(all .3s);
+    z-index: 5;
 
     &:before {
       @include pseudo-block($top: 13px, $left: 13px);
       height: 3px;
       width: 20px;
       background: #fff;
+      @include transition(all .3s);
     }
 
     &:after {
@@ -50,6 +53,7 @@ body {
       height: 3px;
       width: 20px;
       background: #fff;
+      @include transition(all .3s);
     }
 
     span {
@@ -60,6 +64,28 @@ body {
       top: 50%;
       left: 13px;
       @include transform(translateY(-50%));
+    }
+
+    &.active {
+      background: #fff;
+
+      &:before {
+        background: #393939;
+        width: 30px;
+        @include transform(rotate(-45deg));
+        top: 20px;
+      }
+
+      &:after {
+        background: #393939;
+        width: 30px;
+        @include transform(rotate(45deg));
+        bottom: 21px;
+      }
+
+      span{
+        opacity: 0;
+      }
     }
   }
 
@@ -109,6 +135,7 @@ body {
       width: 100%;
       border: 1px solid #dadada;
       background: #fff;
+      list-style: none;
 
       li {
         text-align: center;
@@ -153,7 +180,8 @@ form {
   }
 
   &.form-search {
-    margin-bottom: 25px;
+    max-width: 245px;
+    margin: 0 auto 25px;
 
     .form-submit {
       position: absolute;
@@ -314,9 +342,9 @@ form {
         .form-type-textarea {
           position: relative;
 
-          .btn-smile{
+          .btn-smile {
             position: absolute;
-            bottom:23px;
+            bottom: 23px;
             left: 10px;
             @include oneline-sprite-box($icons, smile-btn)
           }
@@ -352,6 +380,13 @@ form {
       }
 
       .comments {
+
+        .img{
+          border-radius: 50%;
+          overflow: hidden;
+          width: 80px;
+          height: 80px;
+        }
 
         ul {
           margin: 0;
@@ -431,7 +466,20 @@ form {
     .post {
       padding: 10px 0;
       @include clearfix();
-      margin-bottom: 45px;
+      margin-bottom: 35px;
+
+      &>.img {
+        position: relative;
+
+        &:before {
+          @include pseudo-block($top: 0, $left: 0, $right: 0, $bottom: 0);
+          @include background-image(linear-gradient(rgba(255, 255, 255, 0) 44%, rgba(255, 255, 255, 0.6) 71%, #ffffff 99%));
+        }
+
+        img {
+          display: block;
+        }
+      }
 
       .date {
         display: inline-block;
@@ -452,7 +500,7 @@ form {
       }
 
       p {
-        margin: 0 0 25px;
+        margin: 0 0 10px;
       }
 
       .mark, .read-more {
@@ -461,7 +509,7 @@ form {
 
       .read-more {
         display: block;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
     }
 
@@ -496,8 +544,13 @@ form {
 
   .sidebar {
 
+    .form-search {
+      display: none;
+    }
+
     .subscribe {
-      margin-bottom: 25px;
+      width: 245px;
+      margin: 0 auto 25px;
 
       .img {
         position: relative;

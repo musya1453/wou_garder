@@ -300,6 +300,13 @@ form {
 
       .comments {
 
+        .img{
+          border-radius: 50%;
+          overflow: hidden;
+          width: 80px;
+          height: 80px;
+        }
+
         ul {
           margin: 0;
           padding: 0;
@@ -380,6 +387,19 @@ form {
       padding: 10px 0;
       @include clearfix();
       margin-bottom: 45px;
+
+      &>.img {
+        position: relative;
+
+        &:before{
+          @include pseudo-block($top:0, $left:0, $right:0, $bottom:0);
+          @include background-image(linear-gradient(rgba(255, 255, 255, 0) 44%, rgba(255, 255, 255, 0.6) 71%, #ffffff 99%));
+        }
+
+        img {
+          display: block;
+        }
+      }
 
       .date {
         display: inline-block;
@@ -733,11 +753,12 @@ form {
 }
 
 .footer-wrapper {
-  padding-bottom: 380px;
+  padding-bottom: 280px;
   background-image: image-url('bg/bg-bottom.png');
   background-repeat: no-repeat;
   background-position: bottom;
   position: relative;
+  background-size: 900px;
 
   &:after {
     @include pseudo-block($bottom: 65%, $right: 0);
